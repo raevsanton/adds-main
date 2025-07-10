@@ -56,6 +56,10 @@ export const CreatingCampaignsModal = ({
 
   const handleCreating = () => {
     dispatch(addCampaign({ name: form.campaignName }))
+    handleCanceling()
+  }
+
+  const handleCanceling = () => {
     setIsModalOpen(false)
     setForm(initialFormData)
   }
@@ -70,7 +74,7 @@ export const CreatingCampaignsModal = ({
   }
 
   return (
-    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+    <Modal isOpen={isModalOpen} onClose={handleCanceling}>
       <h1>Create New Campaign</h1>
 
       <Input
@@ -110,7 +114,7 @@ export const CreatingCampaignsModal = ({
       </fieldset>
 
       <div className="mt-8 flex justify-end gap-4">
-        <Button variant={BUTTON_VARIANT.SECONDARY} onClick={() => setIsModalOpen(false)}>
+        <Button variant={BUTTON_VARIANT.SECONDARY} onClick={handleCanceling}>
           Cancel
         </Button>
         <Button disabled={!form.campaignName.length} onClick={handleCreating}>
